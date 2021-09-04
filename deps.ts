@@ -1,7 +1,14 @@
-import {
+export {
   assert,
   assertEquals,
   assertThrows,
 } from "https://deno.land/std@0.101.0/testing/asserts.ts";
 
-export { assert, assertEquals, assertThrows };
+export {
+  blue,
+  red,
+  reset,
+  yellow,
+} from "https://deno.land/std@0.106.0/fmt/colors.ts";
+
+export { datetime } from "https://deno.land/x/ptera@v1.0.0-beta/mod.ts";
