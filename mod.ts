@@ -22,7 +22,7 @@ const LOG_LEVELS = {
 export type LogLevel = keyof typeof LOG_LEVELS;
 
 export class Log {
-  readonly datetimeFormat: string;
+  private datetimeFormat: string;
   private levelSign: (logLevel: LogLevel) => string;
   private suffix: string[];
 
@@ -53,15 +53,15 @@ export class Log {
     }[levelIndicator];
   }
 
-  prefix(date: Date, logLevel: LogLevel) {
+  _prefix(date: Date, logLevel: LogLevel) {
     return LOG_LEVELS[logLevel].color(
       `${datetime(date).format(this.datetimeFormat)}${this.levelSign(logLevel)}`
         .trimStart(),
     );
   }
 
-  output(date: Date, logLevel: LogLevel, msg: unknown[]) {
-    console[logLevel](this.prefix(date, logLevel), ...msg, ...this.suffix);
+  private output(date: Date, logLevel: LogLevel, msg: unknown[]) {
+    console[logLevel](this._prefix(date, logLevel), ...msg, ...this.suffix);
   }
 
   debug(...msg: unknown[]) {

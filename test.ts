@@ -5,7 +5,7 @@ const levels = ["debug", "info", "warn", "error"] as LogLevel[];
 
 const date = new Date(2020, 9, 6, 8, 2, 45);
 function generateLogPrefixes(log: Log) {
-  return levels.map((level) => log.prefix(date, level));
+  return levels.map((level) => log._prefix(date, level));
 }
 
 Deno.test("normal", () => {
