@@ -19,10 +19,27 @@ const LOG_LEVELS = {
   },
 };
 
+/**
+ * The type for the log level.
+ * These correspond to the built-in `console` method.
+ */
 export type LogLevel = "debug" | "info" | "warn" | "error";
 
 /**
- * Log class. Timestamp-Level-Log for Deno.
+ * Timestamp-Level-Log for Deno.
+ *
+ * @Example
+ * ```ts
+ *  const log = new Log();
+ *  log.debug("debug");
+ *  log.info("info", true, null);
+ *  log.warn(["warning", 1, 2.4]);
+ *  try {
+ *    Deno.readFileSync("hello.txt");
+ *  } catch (error) {
+ *    log.error({error});
+ *  }
+ * ```
  */
 export class Log {
   private datetimeFormat: string;
@@ -30,10 +47,18 @@ export class Log {
   private suffix: string[];
 
   /**
-   * @param [minLogLevel="debug"] minimum level to log.
-   * @param [levelIndicator="symbol"] indicator type of log level.
-   * @param [datetimeFormat="YYYY-MM-ddTHH:mm:ssZ"] format of the timestamp.
-   * @param [addNewLine=false] add new line after the each log or not.
+   * Log constructor.
+   * @param minLogLevel [default:"debug"] Minimum level to log.
+   * @param levelIndicator [default:"symbol"] Indicator type of log level.
+   * @param datetimeFormat [default:"YYYY-MM-ddTHH:mm:ssZ"] format of the timestamp. To use this, follow [the documentation of Ptera](https://tak-iwamoto.github.io/ptera/format.html).
+   * @param addNewLine [default:false] Flag to add new line after the each log or not.
+   *
+   * @Example
+   * ```ts
+   *  const log = new Log({ minLogLevel: "info", addNewLine: true });
+   *  log.debug("This will not be displayed");
+   *  log.info("System all green");
+   * ```
    */
   constructor({
     minLogLevel = "debug",
@@ -65,6 +90,8 @@ export class Log {
   /**
    * Generate log prefix with the specified configurations.
    * This is not needed for most normal users, but exported to test.
+   * @param date The date of the timestamp.
+   * @param logLevel The level of the output.
    */
   _prefix(date: Date, logLevel: LogLevel) {
     return LOG_LEVELS[logLevel].color(
@@ -73,35 +100,39 @@ export class Log {
     );
   }
 
-  private output(date: Date, logLevel: LogLevel, msg: unknown[]) {
-    console[logLevel](this._prefix(date, logLevel), ...msg, ...this.suffix);
+  private output(date: Date, logLevel: LogLevel, args: unknown[]) {
+    console[logLevel](this._prefix(date, logLevel), ...args, ...this.suffix);
   }
 
   /**
    * Output `debug` level log with timestamp and level indicator.
+   * @param args What to output.
    */
-  debug(...msg: unknown[]) {
-    this.output(new Date(), "debug", msg);
+  debug(...args: unknown[]) {
+    this.output(new Date(), "debug", args);
   }
 
   /**
    * Output `info` level log with timestamp and level indicator.
+   * @param args What to output.
    */
-  info(...msg: unknown[]) {
-    this.output(new Date(), "info", msg);
+  info(...args: unknown[]) {
+    this.output(new Date(), "info", args);
   }
 
   /**
    * Output `warn` level log with timestamp and level indicator.
+   * @param args What to output.
    */
-  warn(...msg: unknown[]) {
-    this.output(new Date(), "warn", msg);
+  warn(...args: unknown[]) {
+    this.output(new Date(), "warn", args);
   }
 
   /**
    * Output `error` level log with timestamp and level indicator.
+   * @param args What to output.
    */
-  error(...msg: unknown[]) {
-    this.output(new Date(), "error", msg);
+  error(...args: unknown[]) {
+    this.output(new Date(), "error", args);
   }
 }
