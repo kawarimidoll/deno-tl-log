@@ -94,14 +94,14 @@ export class Log {
    * @param logLevel The level of the output.
    */
   _prefix(date: Date, logLevel: LogLevel) {
-    return LOG_LEVELS[logLevel].color(
-      `${datetime(date).format(this.datetimeFormat)}${this.levelSign(logLevel)}`
-        .trimStart(),
-    );
+    const timestamp = datetime(date).format(this.datetimeFormat);
+    const prefix = `${timestamp}${this.levelSign(logLevel)}`.trimStart();
+    return prefix ? [LOG_LEVELS[logLevel].color(prefix)] : [];
   }
 
   private output(date: Date, logLevel: LogLevel, args: unknown[]) {
-    console[logLevel](this._prefix(date, logLevel), ...args, ...this.suffix);
+    const prefix = this._prefix(date, logLevel);
+    console[logLevel](...prefix, ...args, ...this.suffix);
   }
 
   /**
