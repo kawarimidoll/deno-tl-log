@@ -1,8 +1,7 @@
 import { assertEquals } from "./deps.ts";
 import { Log, LogLevel } from "./mod.ts";
 
-const date = new Date(2020, 9, 15, 8, 22, 45);
-const datetimeFormat = "YYYY-MM-dd";
+const date = new Date(2020, 9, 6, 8, 2, 45);
 function generateLogs(log: Log) {
   const levels = ["debug", "info", "warn", "error"] as LogLevel[];
   return levels.map((level) => log.prefix(date, level));
@@ -12,46 +11,58 @@ Deno.test("normal", () => {
   assertEquals(
     generateLogs(new Log()),
     [
-      "\x1b[0m2020-10-15T08:22:45+09:00 ✔\x1b[0m",
-      "\x1b[34m2020-10-15T08:22:45+09:00 ℹ\x1b[39m",
-      "\x1b[33m2020-10-15T08:22:45+09:00 ⚠\x1b[39m",
-      "\x1b[31m2020-10-15T08:22:45+09:00 ✖\x1b[39m",
+      "\x1b[0m2020-10-06T08:02:45+09:00 ✔\x1b[0m",
+      "\x1b[34m2020-10-06T08:02:45+09:00 ℹ\x1b[39m",
+      "\x1b[33m2020-10-06T08:02:45+09:00 ⚠\x1b[39m",
+      "\x1b[31m2020-10-06T08:02:45+09:00 ✖\x1b[39m",
     ],
   );
 });
 
 Deno.test("no levels", () => {
   assertEquals(
-    generateLogs(new Log({ datetimeFormat, levelIndicator: "none" })),
+    generateLogs(new Log({ levelIndicator: "none" })),
     [
-      "\x1b[0m2020-10-15\x1b[0m",
-      "\x1b[34m2020-10-15\x1b[39m",
-      "\x1b[33m2020-10-15\x1b[39m",
-      "\x1b[31m2020-10-15\x1b[39m",
+      "\x1b[0m2020-10-06T08:02:45+09:00\x1b[0m",
+      "\x1b[34m2020-10-06T08:02:45+09:00\x1b[39m",
+      "\x1b[33m2020-10-06T08:02:45+09:00\x1b[39m",
+      "\x1b[31m2020-10-06T08:02:45+09:00\x1b[39m",
     ],
   );
 });
 
 Deno.test("initial", () => {
   assertEquals(
-    generateLogs(new Log({ datetimeFormat, levelIndicator: "initial" })),
+    generateLogs(new Log({ levelIndicator: "initial" })),
     [
-      "\x1b[0m2020-10-15 D\x1b[0m",
-      "\x1b[34m2020-10-15 I\x1b[39m",
-      "\x1b[33m2020-10-15 W\x1b[39m",
-      "\x1b[31m2020-10-15 E\x1b[39m",
+      "\x1b[0m2020-10-06T08:02:45+09:00 D\x1b[0m",
+      "\x1b[34m2020-10-06T08:02:45+09:00 I\x1b[39m",
+      "\x1b[33m2020-10-06T08:02:45+09:00 W\x1b[39m",
+      "\x1b[31m2020-10-06T08:02:45+09:00 E\x1b[39m",
     ],
   );
 });
 
 Deno.test("full", () => {
   assertEquals(
-    generateLogs(new Log({ datetimeFormat, levelIndicator: "full" })),
+    generateLogs(new Log({ levelIndicator: "full" })),
     [
-      "\x1b[0m2020-10-15 DEBUG\x1b[0m",
-      "\x1b[34m2020-10-15 INFO \x1b[39m",
-      "\x1b[33m2020-10-15 WARN \x1b[39m",
-      "\x1b[31m2020-10-15 ERROR\x1b[39m",
+      "\x1b[0m2020-10-06T08:02:45+09:00 DEBUG\x1b[0m",
+      "\x1b[34m2020-10-06T08:02:45+09:00 INFO \x1b[39m",
+      "\x1b[33m2020-10-06T08:02:45+09:00 WARN \x1b[39m",
+      "\x1b[31m2020-10-06T08:02:45+09:00 ERROR\x1b[39m",
+    ],
+  );
+});
+
+Deno.test("change datetime format", () => {
+  assertEquals(
+    generateLogs(new Log({ datetimeFormat: "MMM, d, YYYY, h:m a" })),
+    [
+      "\x1b[0mOct, 6, 2020, 8:2 AM ✔\x1b[0m",
+      "\x1b[34mOct, 6, 2020, 8:2 AM ℹ\x1b[39m",
+      "\x1b[33mOct, 6, 2020, 8:2 AM ⚠\x1b[39m",
+      "\x1b[31mOct, 6, 2020, 8:2 AM ✖\x1b[39m",
     ],
   );
 });
