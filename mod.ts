@@ -53,13 +53,15 @@ export class Log {
     }[levelIndicator];
   }
 
-  output(date: Date, logLevel: LogLevel, msg: unknown[]) {
-    const prefix = LOG_LEVELS[logLevel].color(
+  prefix(date: Date, logLevel: LogLevel) {
+    return LOG_LEVELS[logLevel].color(
       `${datetime(date).format(this.datetimeFormat)}${this.levelSign(logLevel)}`
         .trimStart(),
     );
+  }
 
-    console[logLevel](prefix, ...msg, this.suffix);
+  output(date: Date, logLevel: LogLevel, msg: unknown[]) {
+    console[logLevel](this.prefix(date, logLevel), ...msg, this.suffix);
   }
 
   debug(...msg: unknown[]) {
