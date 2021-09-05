@@ -1,72 +1,58 @@
-# deno-dev-template
+# deno-tl-log
 
-[![ci](https://github.com/kawarimidoll/deno-dev-template/workflows/ci/badge.svg)](.github/workflows/ci.yml)
+[![ci](https://github.com/kawarimidoll/deno-tl-log/workflows/ci/badge.svg)](.github/workflows/ci.yml)
 [![deno.land](https://img.shields.io/badge/deno-%5E1.0.0-green?logo=deno)](https://deno.land)
 [![vr scripts](https://badges.velociraptor.run/flat.svg)](https://velociraptor.run)
 [![LICENSE](https://img.shields.io/badge/license-MIT-brightgreen)](LICENSE)
 
-my deno template
+<img align="right" src="https://user-images.githubusercontent.com/8146876/132110887-fcade83e-0467-4693-98e1-a84a1a916bf0.png" alt="example">
 
-Confirm there is `~/.deno/bin` in `$PATH` to use the scripts installed by
-`deno install`.
+Time-Level-Log for Deno🦕
 
-## Run with Velociraptor
+## Usage
 
-Need to install [Velociraptor](https://velociraptor.run/).
+See:
+[![deno doc](https://doc.deno.land/badge.svg)](https://doc.deno.land/https/deno.land/x/tl_log)
 
-```
-$ # install velociraptor
-$ deno install -qAn vr https://deno.land/x/velociraptor/cli.ts
-$ # install hook
-$ vr
-```
+## Examples
 
-The scripts are defined in [velociraptor.yml](/velociraptor.yml).
+### For Deno CLI
 
-### Run main.ts
+See [example file](examples/console.ts) or run it in your terminal.
 
 ```
-$ vr start
+deno run https://deno.land/x/tl_log/examples/console.ts
 ```
 
-### Start server.ts
+### For Deno Deploy
 
-Need to install [deployctl](https://deno.com/deploy/docs/deployctl).
-
-```
-$ # install deployctl
-$ deno install --allow-read --allow-write --allow-env --allow-net --allow-run --no-check -f https://deno.land/x/deploy/deployctl.ts
-$ # start server
-$ vr dev
-```
-
-### Run tests
-
-Need to create `.env`.
+See [example file](examples/server.ts) or run it in your terminal.
 
 ```
-$ # create .env
-$ cp .env.example .env
-$ # run tests
-$ vr test
+deno run --allow-env --allow-net https://deno.land/x/tl_log/examples/server.ts
 ```
 
-### Run CI
+You can also use [deployctl](https://github.com/deno_land/deployctl).
 
 ```
-$ # run lint, format, tests
-$ vr ci
+deployctl run --libs="" https://deno.land/x/tl_log/examples/server.ts
 ```
 
-## Logger
+## Motivation
 
-Import from `logger.ts`.
+Deno already has some log modules, such as [std/log](https://deno.land/std/log).
 
-```ts
-import { Logger } from "./logger.ts";
+But most of the modules has the feature to write file, this will causes errors
+on the Deno Deploy environments.
 
-Logger.debug("This log is debug!");
-Logger.info("This log is info!");
-Logger.warning("This log is warning!");
-Logger.error("This log is error!");
-```
+This module is built to not conflict with Deno Deploy API.
+
+This module also respects the selected levels. If user call `warn`, the built-in
+method `console.warn` is called.
+
+## Prior arts
+
+- The log colors are inspired by [std/log](https://deno.land/std/log).
+- The log level indicators are inspired by
+  [log_symbols](https://deno.land/x/log_symbols).
+- The datetime formats are powered by [Ptera](https://deno.land/x/ptera).
