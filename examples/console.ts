@@ -1,4 +1,4 @@
-import { Log } from "./mod.ts";
+import { Log } from "../mod.ts";
 
 const log = new Log();
 log.debug("debug");

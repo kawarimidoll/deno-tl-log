@@ -1,7 +1,11 @@
 scripts:
+  example:
+    desc: Runs example script
+    cmd: deno run examples/console.ts
+
   server:
     desc: Starts local server
-    cmd: deployctl run --libs="" --watch server.ts
+    cmd: deployctl run --libs="" --watch examples/server.ts
 
   deps:
     desc: Update dependencies with ensuring pass tests

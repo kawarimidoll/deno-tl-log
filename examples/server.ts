@@ -1,5 +1,5 @@
 /// <reference path="./deploy.d.ts" />
-import { Log } from "./mod.ts";
+import { Log } from "../mod.ts";
 
 // "DENO_DEPLOYMENT_ID" is automatically added on Deno Deploy.
 // https://github.com/denoland/deploy_feedback/issues/73
