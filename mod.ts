@@ -50,7 +50,7 @@ export class Log {
    * Log constructor.
    * @param minLogLevel [default:"debug"] Minimum level to log.
    * @param levelIndicator [default:"symbol"] Indicator type of log level.
-   * @param datetimeFormat [default:"YYYY-MM-ddTHH:mm:ssZ"] format of the timestamp. To use this, follow [the documentation of Ptera](https://tak-iwamoto.github.io/ptera/format.html).
+   * @param datetimeFormat [default:"YYYY-MM-ddTHH:mm:ssZ"] Format of the timestamp. To use this, follow [the documentation of Ptera](https://tak-iwamoto.github.io/ptera/format.html).
    * @param addNewLine [default:false] Flag to add new line after the each log or not.
    *
    * @Example
