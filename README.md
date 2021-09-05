@@ -5,7 +5,8 @@
 [![vr scripts](https://badges.velociraptor.run/flat.svg)](https://velociraptor.run)
 [![LICENSE](https://img.shields.io/badge/license-MIT-brightgreen)](LICENSE)
 
-<img align="right" src="https://user-images.githubusercontent.com/8146876/132110887-fcade83e-0467-4693-98e1-a84a1a916bf0.png" alt="example">
+<img align="right" src="https://user-images.githubusercontent.com/8146876/132111226-d4eef47f-683b-4353-8c5a-fbd1f6314eea.png" alt="example">
+<!-- assets: https://github.com/kawarimidoll/deno-tl-log/issues/1 -->
 
 Time-Level-Log for Deno🦕
 
