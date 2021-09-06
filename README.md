@@ -13,7 +13,7 @@ Time-Level-Log for Deno🦕
 ## Usage
 
 See:
-[![deno doc](https://doc.deno.land/badge.svg)](https://doc.deno.land/https/deno.land/x/tl_log)
+[![deno doc](https://doc.deno.land/badge.svg)](https://doc.deno.land/https/deno.land/x/tl_log/mod.ts)
 
 ## Examples
 
