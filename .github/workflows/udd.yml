@@ -11,8 +11,11 @@ jobs:
       - uses: actions/checkout@master
       - uses: denoland/setup-deno@v1
       - name: Update dependencies
+        env:
+          TZ: Asia/Tokyo
         run: >
-          deno run -A https://deno.land/x/udd/main.ts deps.ts --test="deno test -r"
+          deno run -A https://deno.land/x/udd/main.ts
+          deps.ts --test="deno test -r"
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
