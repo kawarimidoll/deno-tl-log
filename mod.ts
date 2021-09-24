@@ -87,20 +87,14 @@ export class Log {
     }[levelIndicator];
   }
 
-  /**
-   * Generate log prefix with the specified configurations.
-   * This is not needed for most normal users, but exported to test.
-   * @param date The date of the timestamp.
-   * @param logLevel The level of the output.
-   */
-  _prefix(date: Date, logLevel: LogLevel) {
+  private prefix(date: Date, logLevel: LogLevel) {
     const timestamp = datetime(date).format(this.datetimeFormat);
     const prefix = `${timestamp}${this.levelSign(logLevel)}`.trimStart();
     return prefix ? [LOG_LEVELS[logLevel].color(prefix)] : [];
   }
 
   private output(date: Date, logLevel: LogLevel, args: unknown[]) {
-    const prefix = this._prefix(date, logLevel);
+    const prefix = this.prefix(date, logLevel);
     console[logLevel](...prefix, ...args, ...this.suffix);
   }
 
