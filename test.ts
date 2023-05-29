@@ -21,6 +21,18 @@ Deno.test("normal", () => {
   );
 });
 
+Deno.test("no color", () => {
+  assertEquals(
+    generateLogPrefixes(new Log({ color: false })),
+    [
+      ["2020-10-06T08:02:45+09:00 ✔"],
+      ["2020-10-06T08:02:45+09:00 ℹ"],
+      ["2020-10-06T08:02:45+09:00 ⚠"],
+      ["2020-10-06T08:02:45+09:00 ✖"],
+    ],
+  );
+});
+
 Deno.test("no levels", () => {
   assertEquals(
     generateLogPrefixes(new Log({ levelIndicator: "none" })),
