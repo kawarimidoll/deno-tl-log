@@ -7,4 +7,4 @@ export {
   yellow,
 } from "https://deno.land/std@0.189.0/fmt/colors.ts";
 
-export { datetime } from "https://deno.land/x/ptera@v1.0.2/mod.ts";
+export { datetime } from "https://deno.land/x/ptera@v1.0.2/datetime.ts";
