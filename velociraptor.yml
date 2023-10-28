@@ -5,7 +5,10 @@ scripts:
 
   server:
     desc: Starts local server
-    cmd: deployctl run --libs="" --watch examples/server.ts
+    cmd: deno run examples/server.ts
+    allow:
+      env: DENO_DEPLOYMENT_ID
+      net: 0.0.0.0
 
   deps:
     desc: Update dependencies with ensuring pass tests

@@ -1,4 +1,3 @@
-/// <reference path="./deploy.d.ts" />
 import { Log } from "../mod.ts";
 
 // "DENO_DEPLOYMENT_ID" is automatically added on Deno Deploy.
@@ -10,17 +9,7 @@ const log = new Log({
   addNewLine: true,
 });
 
-const listener = Deno.listen({ port: 8080 });
-console.log(`HTTP server listening on http://localhost:${listener.addr.port}`);
-
-async function handleConn(conn: Deno.Conn) {
-  const httpConn = Deno.serveHttp(conn);
-  for await (const e of httpConn) {
-    e.respondWith(handler(e.request, conn));
-  }
-}
-
-function handler(request: Request, _conn: Deno.Conn) {
+Deno.serve((request: Request) => {
   const { host, pathname, searchParams } = new URL(request.url);
   const params = Object.fromEntries([...searchParams.entries()]);
 
@@ -57,8 +46,4 @@ function handler(request: Request, _conn: Deno.Conn) {
       headers: { "content-type": "text/html" },
     },
   );
-}
-
-for await (const conn of listener) {
-  handleConn(conn);
-}
+});
