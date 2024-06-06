@@ -2,7 +2,6 @@
 
 [![ci](https://github.com/kawarimidoll/deno-tl-log/workflows/ci/badge.svg)](.github/workflows/ci.yml)
 [![deno.land](https://img.shields.io/badge/deno-%5E1.14.0-green?logo=deno)](https://deno.land)
-[![vr scripts](https://badges.velociraptor.run/flat.svg)](https://velociraptor.run)
 [![LICENSE](https://img.shields.io/badge/license-MIT-brightgreen)](LICENSE)
 
 <img align="right" src="https://user-images.githubusercontent.com/8146876/132111226-d4eef47f-683b-4353-8c5a-fbd1f6314eea.png" alt="example">
