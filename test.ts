@@ -1,4 +1,4 @@
-import { assertEquals } from "./deps.ts";
+import { assertEquals } from "@std/assert";
 import { Log, LogLevel } from "./mod.ts";
 
 const levels = ["debug", "info", "warn", "error"] as LogLevel[];

@@ -1,0 +1,16 @@
+{
+  "imports": {
+    "@std/assert": "jsr:@std/assert@^0.226.0",
+    "@std/fmt": "jsr:@std/fmt@^0.225.3",
+    "ptera": "https://deno.land/x/ptera@v1.0.2/datetime.ts"
+  },
+  "tasks": {
+    "run": "deno run --allow-net=0.0.0.0:8000 --allow-read=. --watch server.ts",
+
+    "test": "TZ=Asia/Tokyo deno test --reload --allow-read=. --allow-none",
+    "cov": "deno task test --coverage=cov_profile; deno coverage cov_profile",
+    "lint": "deno lint --ignore=cov_profile",
+    "fmt": "deno fmt --ignore=cov_profile",
+    "ci": "deno task lint && deno task fmt --check && deno task test"
+  }
+}

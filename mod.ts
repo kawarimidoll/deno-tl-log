@@ -1,4 +1,5 @@
-import { blue, datetime, red, reset, yellow } from "./deps.ts";
+import { blue, red, reset, yellow } from "@std/fmt/colors";
+import { datetime } from "ptera";
 
 const LOG_LEVELS = {
   debug: {
