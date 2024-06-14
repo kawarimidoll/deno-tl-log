@@ -1,7 +1,7 @@
 {
   "imports": {
     "@std/assert": "jsr:@std/assert@^0.226.0",
-    "@std/fmt": "jsr:@std/fmt@^0.225.3",
+    "@std/fmt": "jsr:@std/fmt@^0.225.4",
     "ptera": "https://deno.land/x/ptera@v1.0.2/datetime.ts"
   },
   "tasks": {
