@@ -3,7 +3,7 @@
   "packages": {
     "specifiers": {
       "jsr:@std/assert@^0.226.0": "jsr:@std/assert@0.226.0",
-      "jsr:@std/fmt@^0.225.3": "jsr:@std/fmt@0.225.4",
+      "jsr:@std/fmt@^0.225.4": "jsr:@std/fmt@0.225.4",
       "jsr:@std/internal@^1.0.0": "jsr:@std/internal@1.0.0"
     },
     "jsr": {
@@ -38,7 +38,7 @@
   "workspace": {
     "dependencies": [
       "jsr:@std/assert@^0.226.0",
-      "jsr:@std/fmt@^0.225.3"
+      "jsr:@std/fmt@^0.225.4"
     ]
   }
 }

@@ -7,6 +7,8 @@
   "tasks": {
     "run": "deno run --allow-net=0.0.0.0:8000 --allow-read=. --watch server.ts",
 
+    "update": "deno run --allow-env --allow-read --allow-write=. --allow-run=git,deno --allow-net=deno.land,jsr.io jsr:@molt/cli deno.jsonc",
+
     "test": "TZ=Asia/Tokyo deno test --reload --allow-read=. --allow-none",
     "cov": "deno task test --coverage=cov_profile; deno coverage cov_profile",
     "lint": "deno lint --ignore=cov_profile",
