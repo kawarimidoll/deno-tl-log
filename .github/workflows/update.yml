@@ -14,7 +14,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: hasundue/molt-action@v1-rc
+      - uses: denoland/setup-deno@v1
+      - name: Update dependencies
+        run: deno task update
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
         with:
-          commit-prefix: 'chore(deps):'
-          source: deno.jsonc
+          commit-message: "chore(deps): update deno dependencies"
+          title: Update Deno Dependencies
+          body: >
+            Automated updates by [molt](https://github.com/hasundue/molt)
+            and [create-pull-request](https://github.com/peter-evans/create-pull-request)
+            GitHub action
+          branch: update-deno-dependencies
+          author: GitHub <noreply@github.com>
+          delete-branch: true
