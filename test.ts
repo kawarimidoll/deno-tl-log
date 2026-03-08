@@ -125,10 +125,42 @@ Deno.test("add newline", () => {
   );
 });
 
-Deno.test("minimum level", () => {
+Deno.test("minimum level: warn", () => {
   assertEquals(
     collectConsoleArgs(new Log({ datetimeFormat: "", minLogLevel: "warn" })),
     [
+      ["\x1b[33m⚠\x1b[39m", "warn"],
+      ["\x1b[31m✖\x1b[39m", "error"],
+    ],
+  );
+});
+
+Deno.test("minimum level: info", () => {
+  assertEquals(
+    collectConsoleArgs(new Log({ datetimeFormat: "", minLogLevel: "info" })),
+    [
+      ["\x1b[34mℹ\x1b[39m", "info"],
+      ["\x1b[33m⚠\x1b[39m", "warn"],
+      ["\x1b[31m✖\x1b[39m", "error"],
+    ],
+  );
+});
+
+Deno.test("minimum level: error", () => {
+  assertEquals(
+    collectConsoleArgs(new Log({ datetimeFormat: "", minLogLevel: "error" })),
+    [
+      ["\x1b[31m✖\x1b[39m", "error"],
+    ],
+  );
+});
+
+Deno.test("minimum level: debug outputs all levels", () => {
+  assertEquals(
+    collectConsoleArgs(new Log({ datetimeFormat: "", minLogLevel: "debug" })),
+    [
+      ["\x1b[0m✔\x1b[0m", "debug"],
+      ["\x1b[34mℹ\x1b[39m", "info"],
       ["\x1b[33m⚠\x1b[39m", "warn"],
       ["\x1b[31m✖\x1b[39m", "error"],
     ],
@@ -145,4 +177,19 @@ Deno.test("no prefix", () => {
       ["error"],
     ],
   );
+});
+
+Deno.test("multiple arguments", () => {
+  const log = new Log({ datetimeFormat: "", levelIndicator: "none" });
+  const result: unknown[] = [];
+  const original = console.info;
+  try {
+    console.info = (...args: unknown[]) => {
+      result.push(args);
+    };
+    log.info("message", 42, { key: "value" });
+  } finally {
+    console.info = original;
+  }
+  assertEquals(result, [["message", 42, { key: "value" }]]);
 });
