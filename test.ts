@@ -1,7 +1,7 @@
 import { assertEquals } from "@std/assert";
 import { Log, type LogLevel } from "./mod.ts";
 
-const levels = ["debug", "info", "warn", "error"] as LogLevel[];
+const levels: LogLevel[] = ["debug", "info", "warn", "error"];
 
 const date = new Date(2020, 9, 6, 8, 2, 45);
 function generateLogPrefixes(log: Log) {
