@@ -1,5 +1,5 @@
 import { blue, red, reset, yellow } from "@std/fmt/colors";
-import { datetime } from "ptera";
+import { format as formatDate } from "@std/datetime/format";
 
 const LOG_LEVELS = {
   debug: {
@@ -52,7 +52,7 @@ export class Log {
    * Log constructor.
    * @param minLogLevel [default:"debug"] Minimum level to log.
    * @param levelIndicator [default:"symbol"] Indicator type of log level.
-   * @param datetimeFormat [default:"YYYY-MM-ddTHH:mm:ssZ"] Format of the timestamp. To use this, follow [the documentation of Ptera](https://tak-iwamoto.github.io/ptera/format.html).
+   * @param datetimeFormat [default:"yyyy-MM-dd'T'HH:mm:ss"] Format of the timestamp. To use this, follow [the documentation of @std/datetime](https://jsr.io/@std/datetime/doc/format).
    * @param addNewLine [default:false] Flag to add new line after the each log or not.
    * @param color [default:true] Flag to colorize the log or not.
    *
@@ -66,7 +66,7 @@ export class Log {
   constructor({
     minLogLevel = "debug",
     levelIndicator = "symbol",
-    datetimeFormat = "YYYY-MM-ddTHH:mm:ssZ",
+    datetimeFormat = "yyyy-MM-dd'T'HH:mm:ss",
     addNewLine = false,
     color = true,
   }: {
@@ -94,7 +94,9 @@ export class Log {
   }
 
   private prefix(date: Date, logLevel: LogLevel) {
-    const timestamp = datetime(date).format(this.datetimeFormat);
+    const timestamp = this.datetimeFormat
+      ? formatDate(date, this.datetimeFormat)
+      : "";
     const prefix = `${timestamp}${this.levelSign(logLevel)}`.trimStart();
     if (!prefix) return [];
     if (!this.color) return [prefix];
