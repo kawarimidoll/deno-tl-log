@@ -1,18 +1,29 @@
 # deno-tl-log
 
 [![ci](https://github.com/kawarimidoll/deno-tl-log/workflows/ci/badge.svg)](.github/workflows/ci.yml)
-[![deno.land](https://img.shields.io/badge/deno-%5E1.14.0-green?logo=deno)](https://deno.land)
+[![JSR](https://jsr.io/badges/@kawarimidoll/tl-log)](https://jsr.io/@kawarimidoll/tl-log)
+[![JSR Score](https://jsr.io/badges/@kawarimidoll/tl-log/score)](https://jsr.io/@kawarimidoll/tl-log)
 [![LICENSE](https://img.shields.io/badge/license-MIT-brightgreen)](LICENSE)
 
 <img align="right" src="https://user-images.githubusercontent.com/8146876/132111226-d4eef47f-683b-4353-8c5a-fbd1f6314eea.png" alt="example">
 <!-- assets: https://github.com/kawarimidoll/deno-tl-log/issues/1 -->
 
-Time-Level-Log for Deno🦕
+Time-Level-Log for Deno
 
 ## Usage
 
+```ts
+import { Log } from "jsr:@kawarimidoll/tl-log";
+
+const log = new Log();
+log.debug("debug");
+log.info("info", true, null);
+log.warn(["warning", 1, 2.4]);
+log.error("something went wrong");
+```
+
 See:
-[![deno doc](https://doc.deno.land/badge.svg)](https://doc.deno.land/https/deno.land/x/tl_log/mod.ts)
+[![JSR](https://jsr.io/badges/@kawarimidoll/tl-log)](https://jsr.io/@kawarimidoll/tl-log)
 
 ## Examples
 
@@ -21,7 +32,7 @@ See:
 See [example file](examples/console.ts) or run it in your terminal.
 
 ```
-deno run https://deno.land/x/tl_log/examples/console.ts
+deno run examples/console.ts
 ```
 
 ### For Deno Deploy
@@ -29,18 +40,12 @@ deno run https://deno.land/x/tl_log/examples/console.ts
 See [example file](examples/server.ts) or run it in your terminal.
 
 ```
-deno run --allow-env --allow-net https://deno.land/x/tl_log/examples/server.ts
-```
-
-You can also use [deployctl](https://github.com/deno_land/deployctl).
-
-```
-deployctl run --libs="" https://deno.land/x/tl_log/examples/server.ts
+deno run --allow-env --allow-net examples/server.ts
 ```
 
 ## Motivation
 
-Deno already has some log modules, such as [std/log](https://deno.land/std/log).
+Deno already has some log modules, such as [@std/log](https://jsr.io/@std/log).
 
 But most of the modules has the feature to write file, this will causes errors
 on the Deno Deploy environments.
@@ -52,7 +57,8 @@ method `console.warn` is called.
 
 ## Prior arts
 
-- The log colors are inspired by [std/log](https://deno.land/std/log).
+- The log colors are inspired by [@std/log](https://jsr.io/@std/log).
 - The log level indicators are inspired by
   [log_symbols](https://deno.land/x/log_symbols).
-- The datetime formats are powered by [Ptera](https://deno.land/x/ptera).
+- The datetime formats are powered by
+  [@std/datetime](https://jsr.io/@std/datetime).
