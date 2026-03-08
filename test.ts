@@ -95,13 +95,21 @@ Deno.test("no timestamp", () => {
 
 function collectConsoleArgs(log: Log) {
   const result: unknown[] = [];
-  levels.forEach((level) => {
-    // stub console
-    console[level] = (...args: unknown[]) => {
-      result.push(args);
-    };
-    log[level](level);
-  });
+  const originals = Object.fromEntries(
+    levels.map((level) => [level, console[level]]),
+  );
+  try {
+    levels.forEach((level) => {
+      console[level] = (...args: unknown[]) => {
+        result.push(args);
+      };
+      log[level](level);
+    });
+  } finally {
+    levels.forEach((level) => {
+      console[level] = originals[level];
+    });
+  }
   return result;
 }
 
