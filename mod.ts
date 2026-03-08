@@ -1,3 +1,26 @@
+/**
+ * A lightweight, colorized logger with timestamps and log level indicators.
+ *
+ * Designed for both Deno CLI and Deno Deploy environments, this module
+ * outputs logs via the built-in `console` methods (debug, info, warn, error)
+ * without any file system access.
+ *
+ * ```ts
+ * import { Log } from "@kawarimidoll/tl-log";
+ *
+ * const log = new Log();
+ * log.info("server started");
+ * // 2024-01-01T12:00:00 ℹ server started
+ *
+ * const log2 = new Log({ minLogLevel: "warn", color: false });
+ * log2.debug("ignored");
+ * log2.warn("disk usage high");
+ * // 2024-01-01T12:00:00 ⚠ disk usage high
+ * ```
+ *
+ * @module
+ */
+
 import { blue, red, reset, yellow } from "@std/fmt/colors";
 import { format as formatDate } from "@std/datetime/format";
 

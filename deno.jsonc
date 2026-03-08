@@ -1,6 +1,7 @@
 {
   "name": "@kawarimidoll/tl-log",
   "version": "0.0.0",
+  "description": "A lightweight, colorized logger with timestamps and log level indicators for Deno",
   "exports": "./mod.ts",
   "publish": {
     "include": ["mod.ts", "deno.jsonc", "LICENSE", "README.md"]
