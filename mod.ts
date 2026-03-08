@@ -76,9 +76,11 @@ export class Log {
     addNewLine?: boolean;
     color?: boolean;
   } = {}) {
-    for (const level of Object.keys(LOG_LEVELS) as LogLevel[]) {
-      if (minLogLevel === level) break;
-      this[level] = () => ({});
+    if (minLogLevel in LOG_LEVELS) {
+      for (const level of Object.keys(LOG_LEVELS) as LogLevel[]) {
+        if (minLogLevel === level) break;
+        this[level] = () => ({});
+      }
     }
 
     this.datetimeFormat = datetimeFormat;
