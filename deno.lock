@@ -1,9 +1,9 @@
 {
   "version": "5",
   "specifiers": {
-    "jsr:@std/assert@1": "1.0.19",
-    "jsr:@std/datetime@0.225": "0.225.7",
-    "jsr:@std/fmt@1": "1.0.9",
+    "jsr:@std/assert@^1.0.19": "1.0.19",
+    "jsr:@std/datetime@~0.225.7": "0.225.7",
+    "jsr:@std/fmt@^1.0.9": "1.0.9",
     "jsr:@std/internal@^1.0.12": "1.0.12"
   },
   "jsr": {
@@ -25,9 +25,9 @@
   },
   "workspace": {
     "dependencies": [
-      "jsr:@std/assert@1",
-      "jsr:@std/datetime@0.225",
-      "jsr:@std/fmt@1"
+      "jsr:@std/assert@^1.0.19",
+      "jsr:@std/datetime@~0.225.7",
+      "jsr:@std/fmt@^1.0.9"
     ]
   }
 }
