@@ -7,9 +7,9 @@
     "include": ["mod.ts", "deno.jsonc", "LICENSE", "README.md"]
   },
   "imports": {
-    "@std/assert": "jsr:@std/assert@^1.0.0",
-    "@std/datetime": "jsr:@std/datetime@^0.225.0",
-    "@std/fmt": "jsr:@std/fmt@^1.0.0"
+    "@std/assert": "jsr:@std/assert@^1.0.19",
+    "@std/datetime": "jsr:@std/datetime@^0.225.7",
+    "@std/fmt": "jsr:@std/fmt@^1.0.10"
   },
   "tasks": {
     "run": "deno run --allow-net=0.0.0.0:8000 --allow-read=. --watch server.ts",
